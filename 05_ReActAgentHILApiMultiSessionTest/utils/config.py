@@ -1,7 +1,6 @@
 import os
 
 
-
 # Author:@南哥AGI研习社 (B站 or YouTube 搜索“南哥AGI研习社”)
 
 
@@ -11,7 +10,7 @@ class Config:
     LOG_FILE = "logfile/app.log"
     if not os.path.exists(os.path.dirname(LOG_FILE)):
         os.makedirs(os.path.dirname(LOG_FILE))
-    MAX_BYTES = 5*1024*1024,
+    MAX_BYTES = 5 * 1024 * 1024,
     BACKUP_COUNT = 3
 
     # PostgreSQL数据库配置参数
@@ -27,7 +26,7 @@ class Config:
     TTL = 3600
 
     # openai:调用gpt模型,qwen:调用阿里通义千问大模型,oneapi:调用oneapi方案支持的模型,ollama:调用本地开源大模型
-    LLM_TYPE = "openai"
+    LLM_TYPE = "qwen"
 
     # API服务地址和端口
     HOST = "0.0.0.0"

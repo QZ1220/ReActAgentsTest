@@ -1,22 +1,23 @@
 import asyncio
+import os
+from typing import List, Any
+
+from langchain.chat_models import init_chat_model
+from langchain_core.messages import SystemMessage, HumanMessage
+from langchain_mcp_adapters.client import MultiServerMCPClient
 from langgraph.checkpoint.memory import InMemorySaver
 from langgraph.prebuilt import create_react_agent
-from langchain_mcp_adapters.client import MultiServerMCPClient
-from langchain_core.messages import SystemMessage, HumanMessage
-from langchain.chat_models import init_chat_model
-from typing import Dict, List, Any
-
-
 
 # Author:@南哥AGI研习社 (B站 or YouTube 搜索“南哥AGI研习社”)
 
 
 # 使用langgraph推荐方式定义大模型
 llm = init_chat_model(
-    model="openai:deepseek-v3",
+    model="qwen-turbo",
     temperature=0,
-    base_url="https://nangeai.top/v1",
-    api_key="sk-1N7kCCLpLMs58uCPGt333cl0sttCxmU7OY23238OMTpREAdEEK"
+    base_url="https://dashscope.aliyuncs.com/compatible-mode/v1",
+    api_key=os.getenv("DASHSCOPE_API_KEY"),
+    model_provider="openai"  # ✅ 显式指定 provider
 )
 
 
@@ -103,11 +104,12 @@ def save_graph_visualization(graph, filename: str = "graph.png") -> None:
 
 # 定义并运行agent
 async def run_agent():
+    aMapApiKey = os.getenv("AMAP_API_KEY")
     # 实例化MCP Server客户端
     client = MultiServerMCPClient({
         # 高德地图MCP Server
         "amap-amap-sse": {
-            "url": "https://mcp.amap.com/sse?key=9bc2bca8f0fb637ecc80a4943g3123b60s53cf",
+            "url": "https://mcp.amap.com/sse?key="+aMapApiKey,
             "transport": "sse",
         }
     })

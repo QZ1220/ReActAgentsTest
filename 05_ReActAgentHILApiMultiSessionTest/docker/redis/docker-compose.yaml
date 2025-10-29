@@ -5,7 +5,7 @@ version: '3.8'
 services:
   redis:
     # 使用官方 Redis 镜像
-    image: redis:latest
+    image: arm64v8/redis
     # 服务名称
     container_name: redis
     # 映射 Redis 默认端口到主机
@@ -18,7 +18,7 @@ services:
     restart: unless-stopped
     # 健康检查：验证 Redis 服务是否正常运行
     healthcheck:
-      test: ["CMD", "redis-cli", "ping"]
+      test: [ "CMD", "redis-cli", "ping" ]
       interval: 30s
       timeout: 10s
       retries: 3
