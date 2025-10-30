@@ -1,10 +1,10 @@
-import os
 import logging
+import os
+
 from concurrent_log_handler import ConcurrentRotatingFileHandler
-from langchain_openai import ChatOpenAI,OpenAIEmbeddings
+from langchain_openai import ChatOpenAI, OpenAIEmbeddings
+
 from .config import Config
-
-
 
 # Author:@南哥AGI研习社 (B站 or YouTube 搜索“南哥AGI研习社”)
 
@@ -20,9 +20,9 @@ handler = ConcurrentRotatingFileHandler(
     # 日志文件
     Config.LOG_FILE,
     # 日志文件最大允许大小为5MB，达到上限后触发轮转
-    maxBytes = Config.MAX_BYTES,
+    maxBytes=Config.MAX_BYTES,
     # 在轮转时，最多保留3个历史日志文件
-    backupCount = Config.BACKUP_COUNT
+    backupCount=Config.BACKUP_COUNT
 )
 # 设置处理器级别为DEBUG
 handler.setLevel(logging.DEBUG)
@@ -31,39 +31,40 @@ handler.setFormatter(logging.Formatter(
 ))
 logger.addHandler(handler)
 
+api_key = os.getenv("DASHSCOPE_API_KEY")
+print("api_key = ", api_key)
 
 # 模型配置字典
 MODEL_CONFIGS = {
-    "openai": {
-        "base_url": "https://nangeai.top/v1",
-        "api_key": "sk-ztX8WQgCFMaWlsXCjdhu21VHSRsycb8L3232F5YbChFr4S294",
-        "chat_model": "gpt-4o-mini",
-        # "chat_model": "deepseek-v3",
-        "embedding_model": "text-embedding-3-small"
-    },
-    "oneapi": {
-        "base_url": "http://139.224.72.218:3000/v1",
-        "api_key": "sk-GseYmJ8pX1D0I00W7a506e8f121234233C4B724FfD66aD9",
-        "chat_model": "qwen-max",
-        "embedding_model": "text-embedding-v1"
-    },
+    # "openai": {
+    #     "base_url": "https://nangeai.top/v1",
+    #     "api_key": "sk-ztX8WQgCFMaWlsXCjdhu21VHSRsycb8L3232F5YbChFr4S294",
+    #     "chat_model": "gpt-4o-mini",
+    #     # "chat_model": "deepseek-v3",
+    #     "embedding_model": "text-embedding-3-small"
+    # },
+    # "oneapi": {
+    #     "base_url": "http://139.224.72.218:3000/v1",
+    #     "api_key": "sk-GseYmJ8pX1D0I00W7a506e8f121234233C4B724FfD66aD9",
+    #     "chat_model": "qwen-max",
+    #     "embedding_model": "text-embedding-v1"
+    # },
     "qwen": {
         "base_url": "https://dashscope.aliyuncs.com/compatible-mode/v1",
-        "api_key": "sk-f718953877a8426888bb1bd88026e2e5",
-        "chat_model": "qwen-turbo-latest",
+        "api_key": api_key,
+        "chat_model": "qwen-turbo",
         "embedding_model": "text-embedding-v1"
-    },
-    "ollama": {
-        "base_url": "http://localhost:11434/v1",
-        "api_key": "ollama",
-        "chat_model": "llama3.1:8b",
-        "embedding_model": "nomic-embed-text:latest"
     }
+    # "ollama": {
+    #     "base_url": "http://localhost:11434/v1",
+    #     "api_key": "ollama",
+    #     "chat_model": "qwen3:8b",
+    #     "embedding_model": "nomic-embed-text:latest"
+    # }
 }
 
-
 # 默认配置
-DEFAULT_LLM_TYPE = "openai"
+DEFAULT_LLM_TYPE = "qwen"
 DEFAULT_TEMPERATURE = 0
 
 
@@ -143,12 +144,11 @@ def get_llm(llm_type: str = DEFAULT_LLM_TYPE) -> ChatOpenAI:
         raise  # 如果默认配置也失败，则抛出异常
 
 
-
 # 示例使用
 if __name__ == "__main__":
     try:
         # 测试不同类型的LLM初始化
-        llm_openai, llm_embedding = get_llm("openai")
+        llm_openai, llm_embedding = get_llm("qwen")
 
         # 测试无效类型
         llm_invalid = get_llm("invalid_type")
