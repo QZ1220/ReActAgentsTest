@@ -1,15 +1,16 @@
 import logging
-from concurrent_log_handler import ConcurrentRotatingFileHandler
+import os
 from typing import Callable
-from langchain_core.tools import BaseTool, tool as create_tool
+
+from concurrent_log_handler import ConcurrentRotatingFileHandler
 from langchain_core.runnables import RunnableConfig
-from langgraph.prebuilt.interrupt import HumanInterruptConfig, HumanInterrupt
-from langgraph.types import interrupt, Command
+from langchain_core.tools import BaseTool, tool as create_tool
 from langchain_core.tools import tool
-from .config import Config
 from langchain_mcp_adapters.client import MultiServerMCPClient
+from langgraph.prebuilt.interrupt import HumanInterruptConfig, HumanInterrupt
+from langgraph.types import interrupt
 
-
+from .config import Config
 
 # Author:@南哥AGI研习社 (B站 or YouTube 搜索“南哥AGI研习社”)
 
@@ -25,9 +26,9 @@ handler = ConcurrentRotatingFileHandler(
     # 日志文件
     Config.LOG_FILE,
     # 日志文件最大允许大小为5MB，达到上限后触发轮转
-    maxBytes = Config.MAX_BYTES,
+    maxBytes=Config.MAX_BYTES,
     # 在轮转时，最多保留3个历史日志文件
-    backupCount = Config.BACKUP_COUNT
+    backupCount=Config.BACKUP_COUNT
 )
 # 设置处理器级别为DEBUG
 handler.setLevel(logging.DEBUG)
@@ -154,10 +155,12 @@ async def get_tools():
         return f"{a}乘以{b}等于{result}。"
 
     # MCP Server工具 高德地图
+    aMapApiKey = os.getenv("AMAP_API_KEY")
+    # 实例化MCP Server客户端
     client = MultiServerMCPClient({
         # 高德地图MCP Server
         "amap-amap-sse": {
-            "url": "https://mcp.amap.com/sse?key=848232b19de923e19d61265e50bb0757",
+            "url": "https://mcp.amap.com/sse?key=" + aMapApiKey,
             "transport": "sse",
         }
     })

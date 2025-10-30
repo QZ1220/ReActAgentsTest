@@ -109,7 +109,7 @@ async def run_agent():
     client = MultiServerMCPClient({
         # 高德地图MCP Server
         "amap-amap-sse": {
-            "url": "https://mcp.amap.com/sse?key="+aMapApiKey,
+            "url": "https://mcp.amap.com/sse?key=" + aMapApiKey,
             "transport": "sse",
         }
     })
@@ -161,11 +161,11 @@ async def run_agent():
     # agent_response_content = agent_response["messages"][-1].content
     # print(f"agent_response:{agent_response_content}")
 
-
     # 2、流式处理查询
     async for message_chunk, metadata in agent.astream(
-            # input={"messages": [HumanMessage(content="这个118.79815,32.01112经纬度对应的地方是哪里。输出的内容中不要出现{}")]},
-            input={"messages": [HumanMessage(content="上海的天气如何?")]},
+            # input={"messages": [
+            # HumanMessage(content="这个118.79815,32.01112经纬度对应的地方是哪里。输出的内容中不要出现{}")]},
+            input={"messages": [HumanMessage(content="双流机场距离天府机场多少千米?请注意：他们不是同一个机场")]},
             config=config,
             stream_mode="messages"
     ):
@@ -182,10 +182,5 @@ async def run_agent():
             print(message_chunk.content, end="|", flush=True)
 
 
-
 if __name__ == "__main__":
     asyncio.run(run_agent())
-
-
-
-

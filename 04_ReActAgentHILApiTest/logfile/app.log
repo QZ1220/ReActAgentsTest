@@ -1,0 +1,33 @@
+2025-10-30 10:41:32,265 - __main__ - INFO - Redis初始化成功
+2025-10-30 10:41:32,432 - utils.llms - INFO - 成功初始化 openai LLM
+2025-10-30 10:41:32,432 - __main__ - INFO - Chat模型初始化成功
+2025-10-30 10:41:32,567 - __main__ - INFO - Checkpointer初始化成功
+2025-10-30 10:41:34,123 - __main__ - INFO - Agent初始化成功
+2025-10-30 10:41:34,123 - __main__ - INFO - 服务完成初始化并启动服务
+2025-10-30 10:41:57,490 - __main__ - INFO - get_system_info接口，接受到前端用户请求
+2025-10-30 10:41:57,495 - __main__ - INFO - 返回当前系统状态信息:sessions_count=0 active_users=[]
+2025-10-30 10:41:59,558 - __main__ - INFO - get_agent_status接口，接受到前端用户请求:111
+2025-10-30 10:41:59,562 - __main__ - ERROR - 用户 111 的会话不存在
+2025-10-30 10:42:09,232 - __main__ - INFO - invoke_agent接口，接受到前端用户请求:user_id='111' query='成都今天的天气' system_message='你会使用工具来帮助用户。如果工具使用被拒绝，请提示用户。'
+2025-10-30 10:42:10,321 - __main__ - ERROR - 处理请求时出错: session_id='e3a7683f-5950-4aee-a2a0-8feb12f200f9' status='error' timestamp=1761792130.321279 message="处理请求时出错: Error code: 401 - {'error': {'message': 'Invalid token (request id: 20251030104054836561394c9TGwRYR)', 'message_zh': '无效的令牌', 'type': 'new_api_error'}}" result=None interrupt_data=None
+2025-10-30 10:42:10,350 - __main__ - INFO - get_agent_status接口，接受到前端用户请求:111
+2025-10-30 10:42:10,354 - __main__ - INFO - 返回当前用户的状态:user_id='111' session_id='e3a7683f-5950-4aee-a2a0-8feb12f200f9' status='error' message=None last_query='成都今天的天气' last_updated=1761792130.3352032 last_response=AgentResponse(session_id='e3a7683f-5950-4aee-a2a0-8feb12f200f9', status='error', timestamp=1761792130.321279, message="处理请求时出错: Error code: 401 - {'error': {'message': 'Invalid token (request id: 20251030104054836561394c9TGwRYR)', 'message_zh': '无效的令牌', 'type': 'new_api_error'}}", result=None, interrupt_data=None)
+2025-10-30 10:43:59,760 - __main__ - INFO - invoke_agent接口，接受到前端用户请求:user_id='111' query='北京的天气' system_message='你会使用工具来帮助用户。如果工具使用被拒绝，请提示用户。'
+2025-10-30 10:44:00,850 - __main__ - ERROR - 处理请求时出错: session_id='e3a7683f-5950-4aee-a2a0-8feb12f200f9' status='error' timestamp=1761792240.849893 message="处理请求时出错: Error code: 401 - {'error': {'message': 'Invalid token (request id: 20251030104245368335283ibXTzA6n)', 'message_zh': '无效的令牌', 'type': 'new_api_error'}}" result=None interrupt_data=None
+2025-10-30 10:44:00,869 - __main__ - INFO - get_agent_status接口，接受到前端用户请求:111
+2025-10-30 10:44:00,873 - __main__ - INFO - 返回当前用户的状态:user_id='111' session_id='e3a7683f-5950-4aee-a2a0-8feb12f200f9' status='error' message=None last_query='北京的天气' last_updated=1761792240.8547578 last_response=AgentResponse(session_id='e3a7683f-5950-4aee-a2a0-8feb12f200f9', status='error', timestamp=1761792240.849893, message="处理请求时出错: Error code: 401 - {'error': {'message': 'Invalid token (request id: 20251030104245368335283ibXTzA6n)', 'message_zh': '无效的令牌', 'type': 'new_api_error'}}", result=None, interrupt_data=None)
+2025-10-30 10:44:10,746 - __main__ - INFO - 关闭服务并完成资源清理
+2025-10-30 10:45:05,758 - __main__ - INFO - Redis初始化成功
+2025-10-30 10:45:05,914 - utils.llms - INFO - 成功初始化 openai LLM
+2025-10-30 10:45:05,915 - __main__ - INFO - Chat模型初始化成功
+2025-10-30 10:45:05,983 - __main__ - INFO - Checkpointer初始化成功
+2025-10-30 10:45:07,514 - __main__ - INFO - Agent初始化成功
+2025-10-30 10:45:07,514 - __main__ - INFO - 服务完成初始化并启动服务
+2025-10-30 10:45:21,830 - __main__ - INFO - get_system_info接口，接受到前端用户请求
+2025-10-30 10:45:21,836 - __main__ - INFO - 返回当前系统状态信息:sessions_count=1 active_users=['111']
+2025-10-30 10:45:23,581 - __main__ - INFO - get_agent_status接口，接受到前端用户请求:111
+2025-10-30 10:45:23,586 - __main__ - INFO - 返回当前用户的状态:user_id='111' session_id='e3a7683f-5950-4aee-a2a0-8feb12f200f9' status='error' message=None last_query='北京的天气' last_updated=1761792240.8547578 last_response=AgentResponse(session_id='e3a7683f-5950-4aee-a2a0-8feb12f200f9', status='error', timestamp=1761792240.849893, message="处理请求时出错: Error code: 401 - {'error': {'message': 'Invalid token (request id: 20251030104245368335283ibXTzA6n)', 'message_zh': '无效的令牌', 'type': 'new_api_error'}}", result=None, interrupt_data=None)
+2025-10-30 10:45:31,816 - __main__ - INFO - invoke_agent接口，接受到前端用户请求:user_id='111' query='三亚的天气' system_message='你会使用工具来帮助用户。如果工具使用被拒绝，请提示用户。'
+2025-10-30 10:45:32,893 - __main__ - ERROR - 处理请求时出错: session_id='e3a7683f-5950-4aee-a2a0-8feb12f200f9' status='error' timestamp=1761792332.893122 message="处理请求时出错: Error code: 401 - {'error': {'message': 'Invalid token (request id: 20251030104417402071601gQZQwRXN)', 'message_zh': '无效的令牌', 'type': 'new_api_error'}}" result=None interrupt_data=None
+2025-10-30 10:45:32,920 - __main__ - INFO - get_agent_status接口，接受到前端用户请求:111
+2025-10-30 10:45:32,925 - __main__ - INFO - 返回当前用户的状态:user_id='111' session_id='e3a7683f-5950-4aee-a2a0-8feb12f200f9' status='error' message=None last_query='三亚的天气' last_updated=1761792332.906903 last_response=AgentResponse(session_id='e3a7683f-5950-4aee-a2a0-8feb12f200f9', status='error', timestamp=1761792332.893122, message="处理请求时出错: Error code: 401 - {'error': {'message': 'Invalid token (request id: 20251030104417402071601gQZQwRXN)', 'message_zh': '无效的令牌', 'type': 'new_api_error'}}", result=None, interrupt_data=None)
